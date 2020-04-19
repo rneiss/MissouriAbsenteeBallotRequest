@@ -12,23 +12,24 @@
 
 <!-- multistep form -->
 <div id="mainContainer">
-<form id="msform">
+<form id="msform" autocomplete="off">
   <!-- progressbar -->
   <ul id="progressbar">
     <li class="active">Enter Zip Code</li>
-    <li>Select Election</li>
+    <!-- <li>Select Election</li> -->
     <li>Reason for Absentee Ballot</li>
     <li>Personal Information</li>
     <li>Sign Form</li>
+    <li>Submit Form</li>
   </ul>
   <!-- fieldsets -->
   <fieldset>
     <h2 class="fs-title">Enter Zip Code</h2>
-    <h3 class="fs-subtitle">This helps us find your upcoming elections</h3>
-    <input type="text" name="zipcode" placeholder="Zip Code" />
-    <input type="button" name="next" class="next action-button" value="Next" />
+    <h3 class="fs-subtitle">So we know which office your form needs to go to.</h3>
+    <input type="text" name="zipcode" id="zipcode" placeholder="Zip Code" />
+    <input type="button" id="zipButton" name="next" class="next action-button" value="Next" />
   </fieldset>
-  <fieldset>
+  <!-- <fieldset>
     <h2 class="fs-title">Select Election</h2>
     <h3 class="fs-subtitle">Which election do you need an absentee ballot for?</h3>
     <select id="election" name="election">
@@ -39,14 +40,14 @@
 
     <input type="button" name="previous" class="previous action-button" value="Previous" />
     <input type="button" name="next" class="next action-button" value="Next" />
-  </fieldset>
+  </fieldset> -->
   <fieldset>
     <h2 class="fs-title">Reason for Voting Absentee</h2>
     <h3 class="fs-subtitle">Registered Missourians who expect to be prevented from going to their polling place on Election Day may vote absentee beginning six weeks prior to an election.</h3>
 
     <select id="reason" name="reason">
-      <option value=0>Absence on Election Day from the jurisdiction of the election authority in which I am registered</option>
       <option value=1>Incapacity or confinement due to illness or physical disability, including caring for a person who is incapacitated or confined due to illness or disability</option>
+      <option value=0>Absence on Election Day from the jurisdiction of the election authority in which I am registered</option>
       <option value=2>Religious belief or practice</option>
       <option value=3>Employment as an election authority or by an election authority at a location other than my polling place</option>
       <option value=4>Incarceration, although I have retained all the necessary qualifications for voting</option>
@@ -73,15 +74,25 @@
 
   <fieldset>
     <h2 class="fs-title">Sign Form</h2>
-    <h3 class="fs-subtitle">If you want to print it out and sign, just skip this step</h3>
+    <h3 class="fs-subtitle">If you want to print your form and sign by hand, feel free to skip this step</h3>
 	<div id="signatureContainer">
 	  <canvas id="signature-pad" class="signature-pad" width=400 height=200></canvas>
 	</div>
     <input type="hidden" id="signature" name="signature" value="">
     <input type="button" name="previous" class="previous action-button" value="Previous" />
-    <input type="submit" name="submit" class="submit action-button" value="Submit" />
+    <input type="button" name="next" class="next action-button" value="Next" />
+    <!-- <input type="submit" name="submit" class="submit action-button" value="Submit" /> -->
 
   </fieldset>
+
+
+  <fieldset>
+    <h2 class="fs-title">Submit Form</h2>
+    <h3 class="fs-subtitle">Click to download your form and send it to the address below.</h3>
+    <h3 class="fs-subtitle" id="sendFormTo"></h3>
+    <input type="submit" name="submit" class="submit action-button" value="Download" />
+  </fieldset>
+
 </form>
 </div>
 
@@ -90,6 +101,8 @@
 <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
 <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
 <script src="https://unpkg.com/downloadjs@1.4.7"></script>
+<script src="./data/zip_to_county.js"></script>
+<script src="./js/pdf_helper_functions.js"></script>
 <script src="./js/main.js"></script>
 </body>
 </html>
