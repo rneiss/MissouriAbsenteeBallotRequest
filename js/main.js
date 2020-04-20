@@ -134,6 +134,7 @@ async function modifyPdf(submissionData) {
   };
 
   const lockField = (acroField) => {
+    acroField.delete(PDFName.of('AP'));
     const fieldType = acroField.lookup(PDFName.of('FT'));
     if (fieldType === PDFName.of('Tx')) {
       acroField.set(PDFName.of('Ff'), PDFNumber.of(1 << 0 /* Read Only */ ));
@@ -170,7 +171,6 @@ async function modifyPdf(submissionData) {
     width: pngDims.width,
     height: pngDims.height,
   })
-  
 
 	//lock fields to prevent further editting
   const acroFields = getAcroFields(pdfDoc);
